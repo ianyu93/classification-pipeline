@@ -2,7 +2,7 @@
 name = "classification-pipeline"
 version = "0.1.0"
 description = "Public example"
-authors = ["Ian Yu <ian.yu@groupbyinc.com>"]
+authors = ["Ian Yu <ian.yu@arc.com.co>"]
 readme = "README.md"
 packages = [{include = "classification_pipeline"}]
 
