@@ -1,0 +1,65 @@
+# PIPELINE DEFINITION
+# Name: data-preparation
+# Inputs:
+#    input_file: str
+#    output_file: str
+components:
+  comp-data-preparation:
+    executorLabel: exec-data-preparation
+    inputDefinitions:
+      parameters:
+        input_file:
+          description: Input file path in GCS bucket in CSV format
+          parameterType: STRING
+        output_file:
+          description: Output file path in GCS bucket in JSONL format
+          parameterType: STRING
+deploymentSpec:
+  executors:
+    exec-data-preparation:
+      container:
+        args:
+        - --executor_input
+        - '{{$}}'
+        - --function_to_execute
+        - data_preparation
+        command:
+        - sh
+        - -c
+        - "\nif ! [ -x \"$(command -v pip)\" ]; then\n    python3 -m ensurepip ||\
+          \ python3 -m ensurepip --user || apt-get install python3-pip\nfi\n\nPIP_DISABLE_PIP_VERSION_CHECK=1\
+          \ python3 -m pip install --quiet     --no-warn-script-location 'gcsfs==2022.11.0'\
+          \ 'google-cloud-secret-manager' 'google-cloud-bigquery' 'google-cloud-bigquery-storage'\
+          \ 'jsonlines' 'pandas==1.5.2' 'protobuf==3.20.*' && \"$0\" \"$@\"\n"
+        - python3
+        - -m
+        - kfp.components.executor_main
+        image: us-central1-docker.pkg.dev/independent-bay-388105/public/data-preparation
+pipelineInfo:
+  name: data-preparation
+root:
+  dag:
+    tasks:
+      data-preparation:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-data-preparation
+        inputs:
+          parameters:
+            input_file:
+              componentInputParameter: input_file
+            output_file:
+              componentInputParameter: output_file
+        taskInfo:
+          name: data-preparation
+  inputDefinitions:
+    parameters:
+      input_file:
+        description: Input file path in GCS bucket in CSV format
+        parameterType: STRING
+      output_file:
+        description: Output file path in GCS bucket in JSONL format
+        parameterType: STRING
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.0.1
