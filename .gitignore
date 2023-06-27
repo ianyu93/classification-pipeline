@@ -1,0 +1,13 @@
+# Local development
+.venv/
+.env
+__pycache__/
+
+# Files
+*.csv
+service_acc_key.json
+label_mapping.json
+*_pipeline.yaml
+*_pipeline.json
+*_params.json
+*_params.yaml
