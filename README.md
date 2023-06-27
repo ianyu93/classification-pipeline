@@ -92,7 +92,7 @@ In this project, we have implemented containerized components and compiled pipel
 
 ## Components
 
-We have defined containerized components under `src/components`, where each Python script contains a single component with a specified GCR image path, for example, the following snippet is an implementation of the `data_preparation` component, where the target image path is `gcr.io/groupby-development/gb-ml/classification-pipeline/data-preparation`:
+We have defined containerized components under `src/components`, where each Python script contains a single component with a specified GCR image path, for example, the following snippet is an implementation of the `data_preparation` component, where the target image path is `us-central1-docker.pkg.dev/independent-bay-388105/public//data-preparation`:
 
 ```python
 @dsl.component(
