@@ -1,0 +1,5 @@
+# Follow Google Python Style Guide
+max-line-length = 80
+docstring-convention = google
+import-order-style = google
+application-import-names = import_order_style
