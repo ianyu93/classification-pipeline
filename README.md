@@ -367,3 +367,5 @@ There are other pipeline implementation that could be done. For example:
 In the previous project, a Cloud Run service was deployed to allow users to make requests and run pipelines without having to use the Google Cloud SDK. This would allow development of self-serve GUI for users to run pipelines. For example, for stakeholders to test predict models on their custom data.
 
 `src/run.py` is designed to accept JSON string precisely for this purpose, where the Cloud Run service would take JSON payload from request and resend the payload to `src/run.py` on the service.
+
+Although the Cloud Run service is not deployed, the implementation is available under `src/api`.
