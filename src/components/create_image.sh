@@ -9,7 +9,7 @@ for COMPONENT_DIR in */; do
 
     # For all component python files in the directory
     for COMPONENT in *.py; do
-      # KFP builds Docker image and pushes to gcr.io/groupby-development/gbi-ml/COMPONENT_NAME:latest
+      # KFP builds Docker image and pushes to us-central1-docker.pkg.dev/independent-bay-388105/public/COMPONENT_NAME:latest
       # Target image URI is set in each component python file
       kfp components build ./ --component-filepattern "$COMPONENT" --push-image
     done

@@ -19,7 +19,7 @@ done
 # Get current timestamp
 timestamp=$(date +%Y%m%d_%H%M%S)
 
-# Create a destination directory with gs://gbi_ml/gbi_classification_pipeline/pipeline_runs/<timestamp>
+# Create a destination directory with gs://public-projects/demo/ecommerce/<timestamp>
 destination_dir="gs://public-projects/demo/ecommerce/${timestamp}"
 
 # Check if source directory is empty or not provided
